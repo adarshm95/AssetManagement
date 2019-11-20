@@ -16,6 +16,9 @@ export class AssetDefService {
     return this.http.get(this.baseUrl+'/Asset_def');
   }
 
+  getAsset(id: number): Observable<any>{
+    return this.http.get(this.baseUrl+'/Asset_def/'+id);
+  }
 
   deleteAsset(id: number): Observable<any>{
     return this.http.delete(this.baseUrl+'/Asset_def/'+id);

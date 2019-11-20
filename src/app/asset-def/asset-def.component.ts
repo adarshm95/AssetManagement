@@ -20,7 +20,6 @@ export class AssetDefComponent implements OnInit {
   assetForm:FormGroup;
   assettypes: Observable<AssetType[]>;
   asset: AssetDef=new AssetDef();
-  assettype:AssetType;
 
   constructor(private assetService: AssetDefService,
     private router: Router, private formBuilder: FormBuilder, private toastr:ToastrService) { }
@@ -28,10 +27,6 @@ export class AssetDefComponent implements OnInit {
   ngOnInit() {
 
     this.reloadData();
-
-
-    
-    // this.assettypes=this.assetService.getAssetTypes();
 
   }
 
@@ -43,19 +38,9 @@ export class AssetDefComponent implements OnInit {
       ad_class: ['',Validators.compose([Validators.required])]
     });
     
-   // this.assettypes=this.assetService.getAssetTypes();
+    this.assettypes=this.assetService.getAssetTypes();
     console.log(this.assettypes);
 
-    
-
-    this.assetService.getAssetTypes().subscribe(x=>{
-      x.forEach(element => {
-        this.asset.ad_type_id=element["at_id"];
-        console.log(this.asset.ad_type_id);
-        
-      });
-     
-    });
   }
 
   addAsset()

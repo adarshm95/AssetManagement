@@ -31,63 +31,40 @@
           </div>
         </div>
 
+        <br>
 
 
-    <!--    <div [ngClass]="form-group">
-          <label class="col-md-4">Asset Type ID</label>
-          <input type="number" class="form-control" 
-            formControlName="ad_type_id" 
-            #ad_type_id />
-        </div>
+           <div [ngClass]="form-group">
+            <label class="col-md-4">Asset Type</label>
 
-        <div *ngIf="assetForm.controls['ad_type_id'].invalid && (assetForm.controls['ad_type_id'].dirty || assetForm.controls['ad_type_id'].touched)" class="alert alert-danger">
-          <div *ngIf="assetForm.controls['ad_type_id'].errors.required">
-            Product Asset Type ID is required.
-          </div>
-        </div>   --> 
-
-
-
-
-         <!-- <select required #mySelect (change)='onOptionsSelected(mySelect.value)'>
+           <select class="form-control" id="ad_type_id"  name="ad_type_id" formControlName="ad_type_id">
             <option value="">Choose Asset Type</option>
-            <option value="0" >All</option>
-            <option *ngFor="let assettype of assettypes | async" value="{{assettype.at_id}}">{{assettype.at_name}}</option>
-          </select> -->
-
-
-           <select name="ad_type_id" #ad_type_id="ngModel" [(ngModel)]="service.formData.ad_type_id">
-            <option value="">Choose Asset Type</option>
-            <option value="0" >All</option>
             <option *ngFor="let assettype of assettypes | async" ngValue="{{assettype.at_id}}">{{assettype.at_name}}</option>
           </select> 
-
-
-        
-        <div *ngIf="assetForm.controls['assettype.at_id'].invalid && (assetForm.controls['assettype.at_id'].dirty || assetForm.controls['assettype.at_id'].touched)" class="alert alert-danger">
-          <div *ngIf="assetForm.controls['assettype.at_id'].errors.required">
+        </div> 
+       
+        <div *ngIf="assetForm.controls['ad_type_id'].invalid && (assetForm.controls['ad_type_id'].dirty || assetForm.controls['ad_type_id'].touched)" class="alert alert-danger">
+          <div *ngIf="assetForm.controls['ad_type_id'].errors.required">
             Asset Type is required.
-          </div>
+          </div> 
         </div> 
 
-          
-      
+<br>
 
-
-
-         <div [ngClass]="form-group">
-          <label class="col-md-4">Class</label>
-          <input type="text" class="form-control" 
-            formControlName="ad_class" 
-            #ad_class />
-        </div>
+<div [ngClass]="form-group">
+    <label class="col-md-4">Asset Class</label>
+        <select class="form-control" formControlName="ad_class">
+            <option value="">Select Asset Class</option>
+            <option value="HW">Hardware</option>
+            <option value="SW">Software</option>
+          </select>
         
         <div *ngIf="assetForm.controls['ad_class'].invalid && (assetForm.controls['ad_class'].dirty || assetForm.controls['ad_class'].touched)" class="alert alert-danger">
           <div *ngIf="assetForm.controls['ad_class'].errors.required">
             Asset Class is required.
           </div>
-        </div>
-        
+        </div>   
+      </div>     
   
         <div class="form-group">
             <button type="submit" class="btn btn-primary"
