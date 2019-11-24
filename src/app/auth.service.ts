@@ -9,13 +9,13 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
 
-  private baseUrl= 'http://localhost:58693/api';
+  private baseUrl= 'http://localhost:51575/api';
   formData: Login;
 
   constructor(private http: HttpClient) { }
 
   public Login(userInfo:Login): Observable<any>{
-    return this.http.get(this.baseUrl+'/Login_tbl?u_name='+userInfo.u_name+'&p_word='+userInfo.p_word);
+    return this.http.get(this.baseUrl+'/Login?uName='+userInfo.u_name+'&pWord='+userInfo.p_word);
   }
   
   public isLoggedIn()
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   public getLoginDet(): Observable<any>{
-    return this.http.get(this.baseUrl+'/Login_tbl');
+    return this.http.get(this.baseUrl+'/Login');
   }
 
 }

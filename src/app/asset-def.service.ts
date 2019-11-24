@@ -8,40 +8,41 @@ import { AssetDef } from './asset-def';
 })
 export class AssetDefService {
 
-  private baseUrl= 'http://localhost:58693/api';
+  private baseUrl= 'http://localhost:51575/api';
 
   constructor(private http: HttpClient) { }
 
   getAssetList(): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_def');
+    return this.http.get(this.baseUrl+'/AssetDefinition');
   }
 
   getAsset(id: number): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_def/'+id);
+    return this.http.get(this.baseUrl+'/AssetDefinition/'+id);
   }
 
   deleteAsset(id: number): Observable<any>{
-    return this.http.delete(this.baseUrl+'/Asset_def/'+id);
+    return this.http.delete(this.baseUrl+'/AssetDefinition/'+id);
   }
 
   addAsset(asset: AssetDef){
-    return this.http.post(this.baseUrl+'/Asset_def',asset);
+    return this.http.post(this.baseUrl+'/AssetDefinition',asset);
   }
   
   getAsset_def(name: string): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_def?na='+name);
+    return this.http.get(this.baseUrl+'/AssetDefinition?na='+name);
   }
 
   putAsset_def(id:number, asset: AssetDef): Observable<any>{
-    return this.http.put(this.baseUrl+'/Asset_def/'+ id, asset);
+    return this.http.put(this.baseUrl+'/AssetDefinition/'+ id, asset);
   }
 
   getAssetType(id: number): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_type/'+id);
+    return this.http.get(this.baseUrl+'/AssetType/'+id);
   }
 
   getAssetTypes(): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_type');
+    return this.http.get(this.baseUrl+'/AssetType');
   }
+  
 
 }

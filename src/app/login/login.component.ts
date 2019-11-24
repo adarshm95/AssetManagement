@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,private toastr:ToastrService) { }
 
   ngOnInit() {
-    this.logins=this.authService.getLoginDet();
+    
     this.loginForm=this.formBuilder.group({
       u_name: ['',Validators.compose([Validators.required])],
       p_word:['',[Validators.required]]
@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
   {
     this.login.u_name=this.loginForm.controls.u_name.value;
     this.login.p_word=this.loginForm.controls.p_word.value;
-    console.log(this.loginForm.value);
     this.isSubmitted=true;
     if(this.loginForm.invalid)
     {
@@ -49,26 +48,26 @@ export class LoginComponent implements OnInit {
    
    this.authService.Login(this.login).subscribe(x=>{
      x.forEach(element => {
-      console.log(this.login.u_type);
-      localStorage.setItem('uname',this.login.u_name);
+      
       this.login.u_type=element["u_type"];     
       if(this.login.u_type=='Admin')
       {
-        localStorage.setItem('ACCESS_TOKEN',this.login.u_type);
+        localStorage.setItem('ACCESS_TOKEN',this.login.u_name);
         this.router.navigateByUrl('admin');
         this.toastr.success('Login Successful');
       }
       else
       {
+        localStorage.setItem('ACCESS_TOKEN',this.login.u_name);
         this.router.navigateByUrl('user');
         this.toastr.success('Login Successful');
       }
-    },
-    error=>{  
-      this.toastr.error('Invalid Username or Password');
-      
     }); 
      });
+
+     if(this.login.u_type==""){
+      this.toastr.error('Invalid Username or Password');
+     }
    
     
   }

@@ -11,9 +11,15 @@ import { PurchaseManagerComponent } from './purchase-manager/purchase-manager.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
- 
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatSelectModule} from '@angular/material/select';
+import { VendorComponent } from './vendor/vendor.component';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
+import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +30,9 @@ import { LoginComponent } from './login/login.component';
     AdminComponent,
     PurchaseManagerComponent,
     LoginComponent,
+    VendorComponent,
+    VendorListComponent,
+    VendorEditComponent,
     
 
 
@@ -36,7 +45,13 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatSliderModule,
+    MatSelectModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger'     
+    })
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

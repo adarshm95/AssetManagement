@@ -8,6 +8,7 @@ import { element } from 'protractor';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class AssetDefComponent implements OnInit {
   asset: AssetDef=new AssetDef();
 
   constructor(private assetService: AssetDefService,
-    private router: Router, private formBuilder: FormBuilder, private toastr:ToastrService) { }
+    private router: Router, private formBuilder: FormBuilder, private toastr:ToastrService,private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -49,13 +50,19 @@ export class AssetDefComponent implements OnInit {
     this.asset.ad_type_id=this.assetForm.controls.ad_type_id.value;
     this.asset.ad_class=this.assetForm.controls.ad_class.value;
     this.assetService.addAsset(this.asset).subscribe(res=>{
+      if(res==1)
       this.toastr.success('Asset Added');
-    },
-    error=>{
-      this.toastr.error('Asset is Not Inserted');
+      else
+      this.toastr.error('Asset is already Exists');
     });
+    
     this.reloadData();
     
+  }
+
+  Logout(){
+    this.authService.logout();
+    this.router.navigateByUrl('logout');
   }
 
 }
