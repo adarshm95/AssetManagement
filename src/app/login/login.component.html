@@ -1,5 +1,37 @@
 
-  <div class="login">
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center"><b>LOGIN</b></h5>
+              <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                <div [ngClass]="form-label-group">
+                  <input type="text" id="inputEmail" formControlName="u_name" class="form-control" placeholder="Username" required autocomplete="off" required autofocus>
+                  <label for="inputEmail">Username</label>
+                </div>
+  
+                <div [ngClass]="form-label-group">
+                  <input type="password" id="inputPassword" formControlName="p_word" class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  
+  
+  
+  
+  
+ <!--   <div class="login">
     <h2 class="login-header">Login</h2>
     <form [formGroup]="loginForm" class="login-container" (ngSubmit)="loginUser()">
   
@@ -22,5 +54,5 @@
         <input type="submit" value="Login">
       </p>
     </form>
-  </div>
+  </div>  -->
 

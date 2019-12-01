@@ -15,7 +15,7 @@ import { AuthService } from '../auth.service';
 })
 export class AssetEditComponent implements OnInit {
 
-  asset: AssetDef;
+  asset: AssetDef= new AssetDef();
   assetForm: FormGroup;
   assettypes: Observable<AssetType[]>;
   assets:Observable<AssetDef[]>;
@@ -29,13 +29,14 @@ export class AssetEditComponent implements OnInit {
     
     this.assetForm=this.formBuilder.group({
       ad_id: [Validators.required],
-      ad_name: [Validators.compose([Validators.required])],
-      ad_type_id: [Validators.compose([Validators.required])],
-      ad_class: [Validators.compose([Validators.required])]
+      ad_name : ['',Validators.compose([Validators.required])],
+      ad_type_id: ['',Validators.compose([Validators.required])],
+      ad_class: ['',Validators.compose([Validators.required])]
     }); 
 
     this.service.getAsset(this.id).subscribe(x=>{
       this.asset=x;
+      console.log(this.asset.ad_type_name);
       console.log(this.asset.ad_type_id);
     }); 
     this.assettypes=this.service.getAssetTypes(); 
@@ -47,12 +48,11 @@ export class AssetEditComponent implements OnInit {
 
   updateAsset()
     {
-
       this.asset.ad_id=this.id;
       this.asset.ad_name=this.assetForm.controls.ad_name.value;
       this.asset.ad_type_id=this.assetForm.controls.ad_type_id.value;
       this.asset.ad_class=this.assetForm.controls.ad_class.value;
-      this.service.putAsset_def(this.id,this.asset).subscribe(res=>{
+      this.service.putAsset_def(this.id, this.asset).subscribe(res=>{
         this.toastr.success('Asset Updated');
         this.router.navigateByUrl("assets");
       });
@@ -61,6 +61,6 @@ export class AssetEditComponent implements OnInit {
 
     Logout(){
       this.authService.logout();
+      this.router.navigateByUrl('logout');
     }
-
 }

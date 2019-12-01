@@ -19,6 +19,13 @@ import {MatSelectModule} from '@angular/material/select';
 import { VendorComponent } from './vendor/vendor.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
+import { VendorThemeComponent } from './vendor-theme/vendor-theme.component';
+import { AdminThemeComponent } from './admin-theme/admin-theme.component';
+import { PurchaseListComponent } from './purchase-list/purchase-list.component';
+import { AssetMasterComponent } from './asset-master/asset-master.component';
+import { AssetMasterListComponent } from './asset-master-list/asset-master-list.component';
+import { PurchaseEditComponent } from './purchase-edit/purchase-edit.component';
+import { MasterOrderListComponent } from './master-order-list/master-order-list.component';
 
 
 @NgModule({
@@ -33,8 +40,13 @@ import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
     VendorComponent,
     VendorListComponent,
     VendorEditComponent,
-    
-
+    VendorThemeComponent,
+    AdminThemeComponent,
+    PurchaseListComponent,
+    AssetMasterComponent,
+    AssetMasterListComponent,
+    PurchaseEditComponent,
+    MasterOrderListComponent,
 
   ],
   imports: [

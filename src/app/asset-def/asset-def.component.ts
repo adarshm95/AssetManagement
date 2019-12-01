@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetDef } from '../asset-def';
 import { AssetType } from '../asset-type';
-
 import { AssetDefService } from '../asset-def.service';
 import { Router } from '@angular/router';
-import { element } from 'protractor';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -17,7 +15,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./asset-def.component.scss']
 })
 export class AssetDefComponent implements OnInit {
-
+  title= 'Asset Definition';
   assetForm:FormGroup;
   assettypes: Observable<AssetType[]>;
   asset: AssetDef=new AssetDef();
@@ -64,5 +62,4 @@ export class AssetDefComponent implements OnInit {
     this.authService.logout();
     this.router.navigateByUrl('logout');
   }
-
 }

@@ -15,8 +15,8 @@ import { element } from 'protractor';
 })
 export class AssetListComponent implements OnInit {
 
-  public popoverTitle: string = 'Popover title';
-  public popoverMessage: string = 'Popover description';
+  public popoverTitle: string = 'Are you Sure???';
+  public popoverMessage: string = 'If sure, click Confirm...';
   public confirmClicked: boolean = false;
   public cancelClicked: boolean = false;
   atype:AssetType;
@@ -25,7 +25,7 @@ export class AssetListComponent implements OnInit {
   typeid: number;
   typename: string;
 
-  constructor(private assetService: AssetDefService, private authservice: AuthService,
+  constructor(private assetService: AssetDefService, private authService: AuthService,
     private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -40,25 +40,6 @@ export class AssetListComponent implements OnInit {
     this.assettypes=this.assetService.getAssetTypes();
     this.assets=this.assetService.getAssetList();
 
-    this.assets.forEach(x=>{
-      x.forEach(element=>{
-        this.typeid=element["ad_type_id"];
-        console.log(this.typeid);
-        this.assettypes.forEach(y=>{
-         y.forEach( element=>{
-          if(element["at_id"]==this.typeid){
-            this.typename=element["at_name"];
-            console.log(this.typename);
-
-          }
-        })
-        })
-
-        element["ad_type_name"]=this.typename;
-      })
-    })
-   
-
   }
 
   deleteasset(id:number){
@@ -70,10 +51,20 @@ export class AssetListComponent implements OnInit {
     })
   }
 
-  Logout(){
-    this.authservice.logout();
-    this.router.navigateByUrl('logout');
+  onOptionsSelected(value: number){
+if(value==null||value==0){
+  this.assets=this.assetService.getAssetList();
+}
+
+else{
+  this.assets= this.assetService.getAssets(value);
+}
+
   }
 
+  Logout(){
+    this.authService.logout();
+    this.router.navigateByUrl('logout');
+  }
 
 }

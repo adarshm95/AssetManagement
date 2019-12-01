@@ -1,37 +1,126 @@
 <div class="panel-heading">
-    <h2 style="text-align: center;">ADMIN</h2>
-  </div>
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 style="text-align: center;">Vendor</h3>
-    </div>
-
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark bg-dark">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-          <a href="assetdef" class="nav-link" routerLinkActive="active">Asset Definition</a>
-      </li>
-      <li class="nav-item">
-        <a href="vendor" class="nav-link" routerLinkActive="active">Vendor</a>
+  <h2 style="text-align: center; color: rgb(11, 81, 122);"><b> ADMIN </b></h2>
+</div> 
+<div class="panel-heading">
+  <h3 style="text-align: center;"><b>Vendor Creation</b></h3>
+</div>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark bg-primary">
+  <ul class="navbar-nav" > 
+    <li class="nav-item1">
+        <a href="assetdef" class="nav-link" routerLinkActive="active">Asset Definition</a>
     </li>
-    <li class="nav-item">
-        <a href="assetmast" class="nav-link" routerLinkActive="active">Asset Master</a>
-    </li>
-    <li class="nav-item">
-      <a href="logout" class="nav-link" routerLinkActive="active" (click)="Logout()">Logout</a>
+    <li class="nav-item2">
+      <a href="vendor" class="nav-link" routerLinkActive="active">Vendor</a>
   </li>
+  <li class="nav-item3">
+      <a href="masterorderlist" class="nav-link" routerLinkActive="active">Asset Master</a>
+  </li>
+  <li class="nav-item">
+    <a href="logout" class="nav-link" routerLinkActive="active" (click)="Logout()">Logout</a>
+</li>
+  </ul>
+</nav>
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark bg-dark">
+    <ul class="navbar-nav">
+      <li class="nav-item10">
+          <a href="vendor" class="nav-link" routerLinkActive="active">Add Vendor</a>
+      </li>
+      <li class="nav-item11">
+        <a href="vendorlist" class="nav-link" routerLinkActive="active">Vendor List</a>
+    </li>
     </ul>
   </nav>
-  <nav class="navbar navbar-expand-sm bg-primary navbar-dark bg-dark">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-            <a href="vendor" class="nav-link" routerLinkActive="active">Add Vendor</a>
-        </li>
-        <li class="nav-item">
-          <a href="vendorlist" class="nav-link" routerLinkActive="active">Vendor List</a>
-      </li>
-      </ul>
-    </nav>
 
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="vendorForm" novalidate (ngSubmit)="addVendor()">
+     
+       <div [ngClass]="form-group">
+        <label class="col-md-4">Vendor Name</label>
+        <input type="text" class="form-control"
+          formControlName="vd_name" 
+          #vd_name />
+      </div> 
+      
+      <div *ngIf="vendorForm.controls['vd_name'].invalid && (vendorForm.controls['vd_name'].dirty || vendorForm.controls['vd_name'].touched)" class="alert alert-danger">
+        <div *ngIf="vendorForm.controls['vd_name'].errors.required">
+          Vendor Name is required.
+        </div>
+      </div>
+
+    <br>
+
+      <div [ngClass]="form-group">
+        <label class="col-md-4">Vendor Type</label>
+        <input type="text" class="form-control"
+          formControlName="vd_type" 
+          #vd_type readonly="true"/>
+      </div> 
+      <br>
+
+      <div [ngClass]="form-group"> 
+        <mat-form-field>
+          <mat-label>Asset Type</mat-label>
+          <mat-select [(ngModel)]="vd_atype_id" name="vd_atype_id" formControlName="vd_atype_id">
+            <mat-option *ngFor="let assettype of assettypes | async"  [value]="assettype.at_id">{{assettype.at_name}}</mat-option>
+          </mat-select>
+        </mat-form-field>        
+     
+      <div *ngIf="vendorForm.controls['vd_atype_id'].invalid && (vendorForm.controls['vd_atype_id'].dirty || vendorForm.controls['vd_atype_id'].touched)" class="alert alert-danger">
+        <div *ngIf="vendorForm.controls['vd_atype_id'].errors.required">
+          Asset Type is required.
+        </div> 
+      </div> 
+    </div>
+
+<br>
+
+<div [ngClass]="form-group">
+  <label class="col-md-4">Vendor Address</label>
+  <input type="textarea" class="form-control"
+    formControlName="vd_addr" 
+    #vd_addr />
+</div> 
+
+<div *ngIf="vendorForm.controls['vd_addr'].invalid && (vendorForm.controls['vd_addr'].dirty || vendorForm.controls['vd_addr'].touched)" class="alert alert-danger">
+  <div *ngIf="vendorForm.controls['vd_addr'].errors.required">
+    Vendor Address is required.
+  </div>
+</div>
+
+<div [ngClass]="form-group">
+  <label class="col-md-4">Valid From</label>
+  <input type="date" class="form-control"
+    formControlName="vd_from" 
+    #vd_from />
+</div> 
+
+<div *ngIf="vendorForm.controls['vd_from'].invalid && (vendorForm.controls['vd_from'].dirty || vendorForm.controls['vd_from'].touched)" class="alert alert-danger">
+  <div *ngIf="vendorForm.controls['vd_from'].errors.required">
+    Valid From Field should not be Empty.
+  </div>
+</div>
+
+<div [ngClass]="form-group">
+  <label class="col-md-4">Valid To</label>
+  <input type="date" class="form-control"
+    formControlName="vd_to"
+    #vd_to />
+</div> 
+
+<div *ngIf="vendorForm.controls['vd_to'].invalid && (vendorForm.controls['vd_to'].dirty || vendorForm.controls['vd_to'].touched)" class="alert alert-danger">
+  <div *ngIf="vendorForm.controls['vd_to'].errors.required">
+    Valid To Field should not be Empty.
+  </div>
+</div>
     
+
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary"
+          [disabled]="vendorForm.pristine || vendorForm.invalid" >
+            Add Vendor
+          </button>
+      </div>
+    </form>
+  </div>
+</div>

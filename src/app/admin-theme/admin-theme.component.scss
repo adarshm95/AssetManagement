@@ -1,0 +1,32 @@
+#topheader .navbar-nav li > a {
+	text-transform: capitalize;
+	color: #333;
+	transition: background-color .2s, color .2s;
+	
+	&:hover,
+	&:focus {
+		background-color: #333;
+		color: #fff;
+	}
+}
+
+#topheader .navbar-nav li.active > a {
+	background-color: #333;
+	color: #fff;
+}
+
+.nav-item1:hover {
+	background-color: #018a94;
+  }
+
+  .nav-item2:hover {
+	background-color: #018a94;
+  }
+
+  .nav-item3:hover {
+	background-color: #018a94;
+  }
+
+  .nav-item:hover {
+	background-color: #c51313;
+  }

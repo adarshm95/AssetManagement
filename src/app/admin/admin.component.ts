@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  title= 'ADMIN';
 
   constructor(private authService: AuthService,private router: Router) { }
 

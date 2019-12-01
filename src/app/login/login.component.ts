@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,private toastr:ToastrService) { }
 
   ngOnInit() {
-    
     this.loginForm=this.formBuilder.group({
       u_name: ['',Validators.compose([Validators.required])],
       p_word:['',[Validators.required]]
@@ -42,14 +41,15 @@ export class LoginComponent implements OnInit {
     this.isSubmitted=true;
     if(this.loginForm.invalid)
     {
-      this.toastr.error('Enter username and password');
+      this.toastr.warning('Enter Username and Password');
       return;
     }
    
-   this.authService.Login(this.login).subscribe(x=>{
-     x.forEach(element => {
-      
-      this.login.u_type=element["u_type"];     
+   this.authService.Login(this.login).subscribe(element => {
+     if(element!=null)
+     {
+      this.login.u_type=element["u_type"]; 
+      console.log(this.login.u_type);  
       if(this.login.u_type=='Admin')
       {
         localStorage.setItem('ACCESS_TOKEN',this.login.u_name);
@@ -61,15 +61,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('ACCESS_TOKEN',this.login.u_name);
         this.router.navigateByUrl('user');
         this.toastr.success('Login Successful');
-      }
-    }); 
-     });
-
-     if(this.login.u_type==""){
-      this.toastr.error('Invalid Username or Password');
+      } 
      }
-   
-    
-  }
+     else
+     {
+       this.toastr.error('Invalid Username or Password');
+       
+     }   
+     });  
+    }
 
 }
